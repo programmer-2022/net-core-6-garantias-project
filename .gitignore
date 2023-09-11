@@ -1,0 +1,84 @@
+## .NET Core
+# archivos y carpetas generados por la compilación
+bin/
+obj/
+
+# archivos generados por .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# TDS project files
+*.tp.publish.xml
+*.tp.publish
+
+# archivos Rider (IDE)
+.idea/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Carpetas de la caché del explorador de archivos
+ehthumbs.db
+desktop.ini
+recycle.bin/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Rider
+.idea/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
