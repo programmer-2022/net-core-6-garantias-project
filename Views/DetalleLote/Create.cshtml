@@ -1,0 +1,71 @@
+﻿@model ProyectGarantia.Models.DetalleLote
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>DetalleLote</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LoteId" class="control-label"></label>
+                <select asp-for="LoteId" class ="form-control" asp-items="ViewBag.LoteId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaOtorgada" class="control-label"></label>
+                <input asp-for="FechaOtorgada" class="form-control" type="date"/>
+                <span asp-validation-for="FechaOtorgada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select asp-for="ClienteId" class ="form-control" asp-items="ViewBag.ClienteId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgenciaId" class="control-label"></label>
+                <select asp-for="AgenciaId" class ="form-control" asp-items="ViewBag.AgenciaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreAsesor" class="control-label"></label>
+                <input asp-for="NombreAsesor" class="form-control" />
+                <span asp-validation-for="NombreAsesor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEnvio" class="control-label"></label>
+                <input asp-for="FechaEnvio" class="form-control" type="date" />
+                <span asp-validation-for="FechaEnvio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadGarantias" class="control-label"></label>
+                <input asp-for="CantidadGarantias" class="form-control" />
+                <span asp-validation-for="CantidadGarantias" class="text-danger"></span>
+            </div>
+            @*@if (ViewBag.ValidationErrorsList != null && ViewBag.ValidationErrorsList.Count > 0)
+            {
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var error in ViewBag.ValidationErrorsList)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                </div>
+            }*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

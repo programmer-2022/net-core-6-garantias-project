@@ -1,0 +1,148 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<ProyectGarantia.Models.DetalleLoteModelo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+    <a class="btn btn-success btn-sm" role="button" asp-action="Create">
+        Nuevo
+    </a>
+    <a class="btn btn-dark btn-sm" role="button" asp-controller="Lote" asp-action="Index">Volver a Lote</a>
+</p>
+<table class="table table-hover table-bordered table-sm">
+    <thead>
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(model => model.Lote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaOtorgada)
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Agencia
+            </th>
+            <th>
+                N° Garantías
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.GVDocOriginal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GVCopiaRevision)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GVTraspaso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GHEscritura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GHAvaluo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GHRevisionIP)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ValorGarantia)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Contrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pagare)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroCorrelativo)
+            </th>
+            <th>
+                Oficial
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEnvio)
+            </th>
+            <th>
+                Creador -  Lote
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lote.NumeroCorrelativo)
+            </td>
+            <td>
+                    @item.FechaOtorgada.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CentroCosto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantidadGarantias)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.GVDocOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GVCopiaRevision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GVTraspaso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GHEscritura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GHAvaluo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GHRevisionIP)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorGarantia)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Contrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pagare)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroCorrelativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreAsesor)
+            </td>
+            <td>
+                    @item.FechaEnvio.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCreador)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+    <tfoot>
+        @Html.PagedListPager((IPagedList)Model,
+        page=>Url.Action("Index",
+        "DetalleLoteModelo",new{page=page}),X.PagedList.Web.Common.PagedListRenderOptions.MinimalWithItemCountText)
+    </tfoot>
+</table>

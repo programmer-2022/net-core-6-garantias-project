@@ -1,0 +1,210 @@
+﻿@model ProyectGarantia.Models.DetalleLoteModelo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>DetalleLoteModelo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LoteId" class="control-label">Num. Correlativo de Lote</label>
+                <select asp-for="LoteId" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Lote,"Id","NumeroCorrelativo"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaOtorgada" class="control-label"></label>
+                <input asp-for="FechaOtorgada" class="form-control" type="date" />
+                <span asp-validation-for="FechaOtorgada" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="NombreCliente" class="control-label"></label>
+                <input asp-for="NombreCliente" class="form-control" />
+                <span asp-validation-for="NombreCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CentroCosto" class="control-label"></label>
+                <input asp-for="CentroCosto" class="form-control" />
+                <span asp-validation-for="CentroCosto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadGarantias" class="control-label"></label>
+                <input asp-for="CantidadGarantias" class="form-control" />
+                <span asp-validation-for="CantidadGarantias" class="text-danger"></span>
+            </div>*@
+            <!-- Botón para obtener datos de la API -->
+            <div class="form-group">
+                <label class="control-label">Cédula</label>
+                <input id="Cedula" class="form-control" /> <!-- Agrega el ID "Cedula" -->
+            </div>
+            <div class="form-group">
+                <label class="control-label">Código Solicitud</label>
+                <input id="CodigoSolicitud" class="form-control" /> <!-- Agrega el ID "CodigoSolicitud" -->
+                <button type="button" id="btnObtenerDatosAPI" class="btn btn-primary">Obtener Datos de API</button>
+            </div>
+            
+
+            <!-- Campos para llenar con los datos de la API -->
+            <div id="datosAPIContainer" style="display: none;">
+                <div class="form-group">
+                    <label asp-for="NombreCliente" class="control-label">Nombre Cliente</label>
+                    <input asp-for="NombreCliente" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Apellidos del Cliente</label>
+                    <input class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumeroCorrelativo" class="control-label">Numero Correlativo del Prestamo</label>
+                    <input asp-for="NumeroCorrelativo" class="form-control" />
+                    <span asp-validation-for="NumeroCorrelativo" class="text-danger"></span>
+                </div>
+
+                <!-- Agregar div contenedor para las garantías -->
+                <div id="garantiasContainer"></div>
+            </div>
+
+            @*<label><strong>Garantías Vehiculares</strong></label>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GVDocOriginal" /> Documentación Original
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GVCopiaRevision" /> Copia Revisión
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GVTraspaso" /> Traspaso
+                </label>
+            </div>
+            <label><strong>Garantías Hipotecarias</strong></label>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GHEscritura" /> Escritura
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GHAvaluo" /> Avalúo
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GHRevisionIP" /> Revisión IP
+                </label>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ValorGarantia" class="control-label"></label>
+                <input asp-for="ValorGarantia" class="form-control" />
+                <span asp-validation-for="ValorGarantia" class="text-danger"></span>
+            </div>
+            <label><strong>Tipo de Documento</strong></label>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Contrato" /> @Html.DisplayNameFor(model => model.Contrato)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Pagare" /> @Html.DisplayNameFor(model => model.Pagare)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreAsesor" class="control-label"></label>
+                <input asp-for="NombreAsesor" class="form-control" />
+                <span asp-validation-for="NombreAsesor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEnvio" class="control-label"></label>
+                <input asp-for="FechaEnvio" class="form-control" type="date" />
+                <span asp-validation-for="FechaEnvio" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="NombreCreador" class="control-label"></label>
+                <input asp-for="NombreCreador" class="form-control" />
+                <span asp-validation-for="NombreCreador" class="text-danger"></span>
+            </div>*@
+            @*@if (ViewBag.ValidationErrorsList != null && ViewBag.ValidationErrorsList.Count > 0)
+            {
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var error in ViewBag.ValidationErrorsList)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                </div>
+            }*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelector("#btnObtenerDatosAPI").addEventListener("click", async function () {
+                    const cedula = document.querySelector("#Cedula").value;
+                    const codigoSolicitud = document.querySelector("#CodigoSolicitud").value;
+
+                    const response = await fetch(`http://190.4.17.10:8889/Api/Datosgarantias?Identidad=${cedula}&codsolid=${codigoSolicitud}`);
+                    const data = await response.json();
+
+                    // Llenar campos con los datos obtenidos
+                    document.querySelector("#NombreCliente").value = data[0].Nombres;
+                    document.querySelector("#ApellidosCliente").value = data[0].Apellidos;
+                    document.querySelector("#Prestamo").value = data[0].Prestamo;
+
+                    // Agregar campos para cada garantía
+                    const garantiasContainer = document.querySelector("#garantiasContainer");
+                    garantiasContainer.innerHTML = ""; // Limpiar el contenido existente
+
+                    for (const garantia of data) {
+                        const garantiaDiv = document.createElement("div");
+                        garantiaDiv.classList.add("form-group");
+
+                        // Crear campos para cada garantía
+                        const label = document.createElement("label");
+                        label.textContent = `Garantia ${garantia.Cod_aval}`;
+                        const valorInput = document.createElement("input");
+                        valorInput.classList.add("form-control");
+                        valorInput.value = ""; // Asignar el valor correspondiente
+
+                        const descripcionInput = document.createElement("input");
+                        descripcionInput.classList.add("form-control");
+                        descripcionInput.value = garantia.Nombre_aval;
+
+                        const tipoInput = document.createElement("input");
+                        tipoInput.classList.add("form-control");
+                        tipoInput.value = garantia.Descrip_aval;
+
+                        garantiaDiv.appendChild(label);
+                        garantiaDiv.appendChild(valorInput);
+                        garantiaDiv.appendChild(descripcionInput);
+                        garantiaDiv.appendChild(tipoInput);
+
+                        garantiasContainer.appendChild(garantiaDiv);
+                    }
+
+                    // Mostrar los campos de datos de la API
+                    document.querySelector("#datosAPIContainer").style.display = "block";
+                });
+            });
+        </script>
+}

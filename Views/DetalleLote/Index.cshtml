@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProyectGarantia.Models.DetalleLote> 
+
+@{
+    ViewData["Title"] = "Control de Préstamos";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-success btn-sm" role="button" asp-action="Create">
+        Nuevo
+    </a>
+    <a class="btn btn-dark btn-sm" role="button" asp-controller="Lote" asp-action="Index">Volver a Lote</a>
+</p>
+<table class="table table-hover table-bordered table-sm">
+    <thead class="table-info">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaOtorgada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreAsesor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEnvio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadGarantias)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lote.NumeroCorrelativo)
+            </td>
+            <td>
+                    @item.FechaOtorgada.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agencia.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreAsesor)
+            </td>
+            <td>
+                    @item.FechaEnvio.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantidadGarantias)
+            </td>
+            <td>
+                    <a class="btn btn-warning btn-sm" role="button" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a class="btn btn-info btn-sm" role="button" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                    <a class="btn btn-danger btn-sm" role="button" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

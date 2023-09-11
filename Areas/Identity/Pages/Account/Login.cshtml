@@ -1,0 +1,134 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Ingrese sus Credenciales";
+}
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-button-login {
+            background-color: #8DBB36;
+            border-color: #8DBB36;
+        }
+
+        .custom-button-forgotpsw {
+            background-color: #0264d6;
+            border-color: #0264d6;
+        }
+
+        .custom-card {
+            border-radius: 20px;
+        }
+
+        .custom-header {
+            background-color: #0963B8;
+            padding: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            max-height: 50px;
+        }
+    </style>
+</head>
+<div class="custom-header">
+    <img src="~/img/IDH HORIZONTAL.png" class="logo" alt="Logo Image">
+    @*<h2 class="text-white">@ViewData["Title"]</h2>*@
+</div>
+<body class="bg-light">
+    
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card custom-card p-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="account" method="post">
+                        <h4>Ingrese sus credenciales</h4>
+                        <hr />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Input.Email" class="form-label"></label>
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.Password" class="form-label"></label>
+                            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        @*<div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" asp-for="Input.RememberMe" />
+                                <label class="form-check-label" asp-for="Input.RememberMe">
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>*@
+                        <button id="login-submit" type="submit" class="btn btn-success btn-block">Iniciar sesión</button>
+                        <br />
+                        <p class="text-center">
+                            <a class="btn btn-info btn-sm btn-block" role="button" id="forgot-password" asp-page="./ForgotPassword">¿Olvidaste tu contraseña?</a>
+                        </p>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <img src="~/img/IDH VERTICAL.png" class="img-fluid" alt="IDH Image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>*@
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+                
+                @*<div>
+                    
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>*@
+            
+        @*<section>
+            <h3>Use another service to log in.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>*@
+    
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
