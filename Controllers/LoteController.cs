@@ -13,13 +13,10 @@ using X.PagedList;
 
 namespace ProyectGarantia.Controllers
 {
-    //[ApiController]
-    //[Route("/[Lote]")]
     public class LoteController : Controller
     {
         public readonly IDALote DALote;
-        public readonly IHTTPRequest _httpRequest;
-        //[Route("WebAppOpe")]
+        private readonly IHTTPRequest _httpRequest;
 
         public LoteController(IDALote DALote, IHTTPRequest httpRequest)
 
@@ -28,20 +25,20 @@ namespace ProyectGarantia.Controllers
             _httpRequest = httpRequest;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Prueba()
         {
-            var informacionServicio = _httpRequest.ObtenerMensajeAsync();
+            var informacionServicio = await _httpRequest.ObtenerMensajeAsync();
             return Ok(informacionServicio);
         }
-        //public IActionResult Index(int page = 1)
-        //{
-        //    //var model = new DALote();
-        //    var pageNumber = page;
-        //    var informacionDB = DALote.GetLote();
-        //    var Datos = informacionDB.OrderByDescending(x => x.Id).ToList().ToPagedList(pageNumber, 8);
-        //    //var informacionServicio = _httpRequest.ObtenerMensaje();
-        //    return View(Datos);
-        //}
+        public IActionResult Index(int page = 1)
+        {
+            //var model = new DALote();
+            var pageNumber = page;
+            var informacionDB = DALote.GetLote();
+            var Datos = informacionDB.OrderByDescending(x => x.Id).ToList().ToPagedList(pageNumber, 8);
+            return View(Datos);
+        }
+
         //Http Request
         [HttpGet("WebAppServicio")]
         public IActionResult Servicio()
@@ -49,38 +46,6 @@ namespace ProyectGarantia.Controllers
             var informacionServicio = _httpRequest.ObtenerMensajeAsync();
             return View(informacionServicio);
         }
-
-        //static async Task Main(string[] args)
-        //{
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        try
-        //        {
-        //            // Definir la URL de la API
-        //            string apiUrl = "https://api.example.com/data";
-
-        //            // Hacer la petición GET
-        //            HttpResponseMessage response = await client.GetAsync(apiUrl);
-
-        //            // Verificar si la petición fue exitosa
-        //            if (response.IsSuccessStatusCode)
-        //            {
-        //                // Leer el contenido de la respuesta
-        //                string content = await response.Content.ReadAsStringAsync();
-        //                Console.WriteLine(content);
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine($"Error: {response.StatusCode}");
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine($"Excepción capturada: {ex.Message}");
-        //        }
-        //    }
-        //}
-
 
         public IActionResult Create()
         {
