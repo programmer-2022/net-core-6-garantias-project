@@ -1,3 +1,9 @@
+# Env files
+.env
+
+# Database files
+postgres-data
+
 ## .NET Core
 # archivos y carpetas generados por la compilación
 bin/
